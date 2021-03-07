@@ -2,6 +2,16 @@
 
 <h1>Employees</h1>
 
+<%= search_form_for @q do |f| %>
+
+<h3>Search Records</h3>
+
+  <%= f.search_field :firstName_or_lastName_or_location_cont, class: "form-control col-3" %>
+  
+  <%= f.submit "Search", class: "btn btn-dark mt-4" %>
+  
+<% end %>
+
 <table class="table table-striped mt-4">
   <thead>
     <tr>
@@ -9,7 +19,8 @@
       <th scope="col">Last Name</th>
       <th scope="col">Location</th>
       <th scope="col">Hours per Week</th>
-      <th colspan="4"></th>
+      <th scope="col">Entitlement</th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -20,9 +31,10 @@
         <td><%= employee.lastName %></td>
         <td><%= employee.location %></td>
         <td><%= employee.workHours %></td>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= employee.entitlement %></td>
+        <td><%= link_to 'Show', employee, class: "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_employee_path(employee), class: "btn btn-outline-primary" %></td>
+        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

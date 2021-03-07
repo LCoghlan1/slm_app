@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_07_132834) do
+ActiveRecord::Schema.define(version: 2021_03_07_191032) do
+
+  create_table "absences", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.float "num_days"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "employees", force: :cascade do |t|
     t.string "firstName"
@@ -19,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_03_07_132834) do
     t.integer "workHours"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "entitlement"
   end
 
   create_table "users", force: :cascade do |t|
@@ -29,6 +39,9 @@ ActiveRecord::Schema.define(version: 2021_03_07_132834) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "firstName"
+    t.string "lastName"
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

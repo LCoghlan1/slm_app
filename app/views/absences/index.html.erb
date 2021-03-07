@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Absences</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Num days</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @absences.each do |absence| %>
+      <tr>
+        <td><%= absence.start_date %></td>
+        <td><%= absence.end_date %></td>
+        <td><%= absence.num_days %></td>
+        <td><%= absence.description %></td>
+        <td><%= link_to 'Show', absence %></td>
+        <td><%= link_to 'Edit', edit_absence_path(absence) %></td>
+        <td><%= link_to 'Destroy', absence, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Absence', new_absence_path %>
