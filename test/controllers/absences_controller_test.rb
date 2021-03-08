@@ -17,7 +17,7 @@ class AbsencesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create absence" do
     assert_difference('Absence.count') do
-      post absences_url, params: { absence: { description: @absence.description, end_date: @absence.end_date, num_days: @absence.num_days, start_date: @absence.start_date } }
+      post absences_url, params: { absence: { date: @absence.date, description: @absence.description, full_pay: @absence.full_pay, half_pay: @absence.half_pay } }
     end
 
     assert_redirected_to absence_url(Absence.last)
@@ -34,7 +34,7 @@ class AbsencesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update absence" do
-    patch absence_url(@absence), params: { absence: { description: @absence.description, end_date: @absence.end_date, num_days: @absence.num_days, start_date: @absence.start_date } }
+    patch absence_url(@absence), params: { absence: { date: @absence.date, description: @absence.description, full_pay: @absence.full_pay, half_pay: @absence.half_pay } }
     assert_redirected_to absence_url(@absence)
   end
 

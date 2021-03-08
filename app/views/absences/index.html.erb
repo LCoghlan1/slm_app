@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Num days</th>
+      <th>Date</th>
+      <th>Full pay</th>
+      <th>Half pay</th>
       <th>Description</th>
       <th colspan="3"></th>
     </tr>
@@ -16,9 +16,9 @@
   <tbody>
     <% @absences.each do |absence| %>
       <tr>
-        <td><%= absence.start_date %></td>
-        <td><%= absence.end_date %></td>
-        <td><%= absence.num_days %></td>
+        <td><%= absence.date %></td>
+        <td><%= absence.full_pay %></td>
+        <td><%= absence.half_pay %></td>
         <td><%= absence.description %></td>
         <td><%= link_to 'Show', absence %></td>
         <td><%= link_to 'Edit', edit_absence_path(absence) %></td>

@@ -12,7 +12,8 @@ class AbsencesController < ApplicationController
 
   # GET /absences/new
   def new
-    @absence = Absence.new
+    @employee = Employee.find(params[:id])
+    @absence = @employee.absences.build
   end
 
   # GET /absences/1/edit
@@ -64,6 +65,6 @@ class AbsencesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def absence_params
-      params.require(:absence).permit(:start_date, :end_date, :num_days, :description)
+      params.require(:absence).permit(:date, :full_pay, :half_pay, :description)
     end
 end

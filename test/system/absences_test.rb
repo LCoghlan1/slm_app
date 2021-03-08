@@ -14,10 +14,10 @@ class AbsencesTest < ApplicationSystemTestCase
     visit absences_url
     click_on "New Absence"
 
+    fill_in "Date", with: @absence.date
     fill_in "Description", with: @absence.description
-    fill_in "End date", with: @absence.end_date
-    fill_in "Num days", with: @absence.num_days
-    fill_in "Start date", with: @absence.start_date
+    check "Full pay" if @absence.full_pay
+    check "Half pay" if @absence.half_pay
     click_on "Create Absence"
 
     assert_text "Absence was successfully created"
@@ -28,10 +28,10 @@ class AbsencesTest < ApplicationSystemTestCase
     visit absences_url
     click_on "Edit", match: :first
 
+    fill_in "Date", with: @absence.date
     fill_in "Description", with: @absence.description
-    fill_in "End date", with: @absence.end_date
-    fill_in "Num days", with: @absence.num_days
-    fill_in "Start date", with: @absence.start_date
+    check "Full pay" if @absence.full_pay
+    check "Half pay" if @absence.half_pay
     click_on "Update Absence"
 
     assert_text "Absence was successfully updated"
