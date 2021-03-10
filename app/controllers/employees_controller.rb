@@ -9,6 +9,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees/1 or /employees/1.json
   def show
+    @absence = Absence.where(employee_id: @employee.id)
   end
 
   # GET /employees/new

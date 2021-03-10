@@ -1,29 +1,48 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Firstname:</strong>
-  <%= @employee.firstName %>
-</p>
+<div class="card">
+  <div class="card-header">
+    Employee Record
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= @employee.firstName %> <%= @employee.lastName %></h5>
+    <p class="card-text">Location: <%= @employee.location %></p>
+    <p class="card-text">Hours per Week: <%= @employee.workHours %></p>
+    <p class="card-text">Max Entitlement: <%= @employee.entitlement %></p>
+    
+    <%= link_to 'Edit Employee Details', edit_employee_path(@employee), class: "btn btn-outline-primary" %> 
+    <%= link_to 'Back to Employee List', employees_path, class: "btn btn-outline-dark" %>
+    
+    <hr>
+    
+    <h5 style="text-align:center">List of Absences</h5>
+    <table class="table table-striped mt-4">
+      <thead>
+        <tr>
+          <th scope="col">Date of Absence</th>
+          <th scope="col">Full Pay</th>
+          <th scope="col">Half Pay</th>
+          <th scope="col">Description</th>
+          <th colspan="2">Actions</td>
+        </tr> 
+      </thead>
+      <tbody>
+        <% @absence.each do |absence| %>
+          <tr>
+            <th scope="row"><%= absence.date %></th>
+            <th scope="row"><%= bool_to_glyph(absence.full_pay) %></th>
+            <th scope="row"><%= bool_to_glyph(absence.half_pay) %></th>
+            <th scope="row"><%= absence.description %></th>
+            <td><%= link_to 'Edit', edit_absence_path(absence), class: "btn btn-outline-primary" %></td>
+            <td><%= link_to 'Delete', absence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <%= link_to 'Add Absence',  :controller => :absences, :action => :new, :employee_id => @employee.id, class: "btn btn-primary" %>
 
-<p>
-  <strong>Lastname:</strong>
-  <%= @employee.lastName %>
-</p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @employee.location %>
-</p>
+  </div>
+</div>
 
-<p>
-  <strong>Workhours:</strong>
-  <%= @employee.workHours %>
-</p>
-
-  <strong>Entitlement:</strong>
-  <%= @employee.entitlement %>
-</p>
-
-<%= link_to 'Add Absence', :controller => :absences, :action => :new, :employee_id => @employee.id %> |
-<%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
