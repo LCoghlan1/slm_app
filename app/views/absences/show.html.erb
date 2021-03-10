@@ -20,5 +20,10 @@
   <%= @absence.description %>
 </p>
 
+<p>
+  <strong>Employee:</strong>
+  <%= @absence.employee_id %>
+</p>
+
 <%= link_to 'Edit', edit_absence_path(@absence) %> |
 <%= link_to 'Back', absences_path %>

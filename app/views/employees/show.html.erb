@@ -20,6 +20,10 @@
   <%= @employee.workHours %>
 </p>
 
-<%= link_to 'Add Absence', :controller => :absences, :action => :new, :id => @employee.id %> |
+  <strong>Entitlement:</strong>
+  <%= @employee.entitlement %>
+</p>
+
+<%= link_to 'Add Absence', :controller => :absences, :action => :new, :employee_id => @employee.id %> |
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
 <%= link_to 'Back', employees_path %>

@@ -1,5 +1,3 @@
 class Absence < ApplicationRecord
-    
-    belongs_to :employee_params
-    
+  belongs_to :employee
 end

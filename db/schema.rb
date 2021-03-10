@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_07_220159) do
+ActiveRecord::Schema.define(version: 2021_03_09_202735) do
 
   create_table "absences", force: :cascade do |t|
     t.date "date"
     t.boolean "full_pay"
     t.boolean "half_pay"
     t.text "description"
+    t.integer "employee_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "employee_id", null: false
     t.index ["employee_id"], name: "index_absences_on_employee_id"
   end
 
@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 2021_03_07_220159) do
     t.string "firstName"
     t.string "lastName"
     t.string "location"
-    t.integer "workHours"
+    t.float "workHours"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "entitlement"
+    t.float "entitlement"
   end
 
   create_table "users", force: :cascade do |t|

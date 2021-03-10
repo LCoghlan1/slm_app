@@ -9,6 +9,7 @@
       <th>Full pay</th>
       <th>Half pay</th>
       <th>Description</th>
+      <th>Employee</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= absence.full_pay %></td>
         <td><%= absence.half_pay %></td>
         <td><%= absence.description %></td>
+        <td><%= absence.employee_id %></td>
         <td><%= link_to 'Show', absence %></td>
         <td><%= link_to 'Edit', edit_absence_path(absence) %></td>
         <td><%= link_to 'Destroy', absence, method: :delete, data: { confirm: 'Are you sure?' } %></td>

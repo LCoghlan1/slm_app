@@ -31,6 +31,10 @@
     <%= form.text_area :description %>
   </div>
 
+  <div class="field">
+    <%= form.hidden_field :employee_id, :value => params[:employee_id] %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

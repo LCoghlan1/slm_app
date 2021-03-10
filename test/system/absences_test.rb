@@ -16,6 +16,7 @@ class AbsencesTest < ApplicationSystemTestCase
 
     fill_in "Date", with: @absence.date
     fill_in "Description", with: @absence.description
+    fill_in "Employee", with: @absence.employee_id
     check "Full pay" if @absence.full_pay
     check "Half pay" if @absence.half_pay
     click_on "Create Absence"
@@ -30,6 +31,7 @@ class AbsencesTest < ApplicationSystemTestCase
 
     fill_in "Date", with: @absence.date
     fill_in "Description", with: @absence.description
+    fill_in "Employee", with: @absence.employee_id
     check "Full pay" if @absence.full_pay
     check "Half pay" if @absence.half_pay
     click_on "Update Absence"
