@@ -8,7 +8,7 @@
 
   <%= f.search_field :firstName_or_lastName_or_location_cont, class: "form-control col-3" %>
   
-  <%= f.submit "Search", class: "btn btn-dark mt-4" %>
+  <%= f.submit "Search", class: "btn btn-info mt-4" %>
   
 <% end %>
 
@@ -32,9 +32,9 @@
         <td><%= employee.location %></td>
         <td><%= employee.workHours %></td>
         <td><%= employee.entitlement %></td>
-        <td><%= link_to 'Show', employee, class: "btn btn-primary" %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee), class: "btn btn-outline-primary" %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <td><%= link_to 'Show', employee, class: "btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_employee_path(employee), class: "btn btn-outline-info" %></td>
+        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -42,6 +42,6 @@
 
 <br>
 
-<%= link_to 'New Employee', new_employee_path %>
+<%= link_to 'Add Employee', new_employee_path, class: "btn btn-info" %>
 
 

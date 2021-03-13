@@ -12,18 +12,28 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :instance_no %>
+    <%= form.text_area :instance_no %>
+  </div>
+
+  <div class="field">
     <%= form.label :date %>
     <%= form.date_select :date %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date %>
   </div>
 
   <div class="field">
     <%= form.label :full_pay %>
-    <%= form.check_box :full_pay %>
+    <%= form.text_area :full_pay %>
   </div>
 
   <div class="field">
     <%= form.label :half_pay %>
-    <%= form.check_box :half_pay %>
+    <%= form.text_area :half_pay %>
   </div>
 
   <div class="field">

@@ -8,8 +8,9 @@ class AbsencesController < ApplicationController
 
   # GET /absences/1 or /absences/1.json
   def show
+    
   end
-
+  
   # GET /absences/new
   def new
     @absence = Absence.new
@@ -64,6 +65,6 @@ class AbsencesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def absence_params
-      params.require(:absence).permit(:date, :full_pay, :half_pay, :description, :employee_id)
+      params.require(:absence).permit(:instance_no, :date, :end_date, :full_pay, :half_pay, :description, :employee_id)
     end
 end

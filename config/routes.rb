@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
   
-  resources :employees 
+  resources :employees do
+    collection do
+      match 'search' => 'employees#search', via: [:get, :post], as: :search
+    end
+  end
 
   
-  resources :absences
+  resources :absences do
+    collection do
+    match 'search' => 'absences#search', via: [:get, :post], as: :search
+    end
+  end
   
-
+  
   
   devise_for :users
   root 'home#index'
