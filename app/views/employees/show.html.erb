@@ -16,15 +16,6 @@
 
 </div>
 
-<%= search_form_for @q do |f| %>
-
-  <h3>Search Records</h3>
-  
-  <%= f.date_select :end_date_lteq, class: "form-control col-3" %>
-    
-  <%= f.submit "Search", class: "btn btn-info mt-4" %>
-  
-<% end %>
 
 <div class="p-3 mb-2 bg-info text-white mt-4">Absence Record</div>
 
@@ -57,7 +48,8 @@
   </tbody>
 </table>
 
-<%= link_to 'Add Absence', :controller => :absences, :action => :new, :employee_id => @employee.id, class: "btn btn-primary" %>
+<%= link_to 'Add Absence', :controller => :absences, :action => :new, :employee_id => @employee.id %><br>
+<%= link_to 'Absence Calculator', :controller => :absences, :action => :index, :employee_id => @employee.id %>
 
 <br>
 

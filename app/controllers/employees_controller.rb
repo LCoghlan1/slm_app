@@ -10,8 +10,6 @@ class EmployeesController < ApplicationController
   # GET /employees/1 or /employees/1.json
   def show
     @absence = Absence.where(employee_id: @employee.id)
-    @q = Absence.ransack(params[:q])
-    @absences = @q.result.includes(:employee, :absences)
   end
   
 

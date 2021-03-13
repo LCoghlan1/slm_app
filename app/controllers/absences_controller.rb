@@ -3,7 +3,15 @@ class AbsencesController < ApplicationController
 
   # GET /absences or /absences.json
   def index
-    @absences = Absence.all
+    @search = Absence.search(params[:q])
+    @absences = @search.result
+    @absences = Absence.where(employee_id: params[:employee_id])
+
+  end
+  
+  def search
+    index
+    render :index
   end
 
   # GET /absences/1 or /absences/1.json
