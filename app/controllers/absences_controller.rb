@@ -4,8 +4,9 @@ class AbsencesController < ApplicationController
   # GET /absences or /absences.json
   def index
 
+    @employee = Employee.find_by(params[:employee_id])
     @q = Absence.ransack(params[:q])
-    @absences = @q.result
+    @absences = @q.result.where(employee_id: params[:employee_id])
     
   end
   
@@ -21,6 +22,7 @@ class AbsencesController < ApplicationController
   
   # GET /absences/new
   def new
+    @employee_id = params[:employee_id]
     @absence = Absence.new
   end
 
@@ -30,6 +32,7 @@ class AbsencesController < ApplicationController
 
   # POST /absences or /absences.json
   def create
+    @employee = Employee.find(params[:employee_id])
     @absence = Absence.new(absence_params)
 
     respond_to do |format|
@@ -37,6 +40,7 @@ class AbsencesController < ApplicationController
         format.html { redirect_to @absence, notice: "Absence was successfully created." }
         format.json { render :show, status: :created, location: @absence }
       else
+        @employee_id = @employee.id
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @absence.errors, status: :unprocessable_entity }
       end

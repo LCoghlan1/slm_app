@@ -2,6 +2,18 @@ class Absence < ApplicationRecord
   
   belongs_to :employee
   
+    validates :date, presence: true
+    validates :full_pay, presence: true
   
-  
+    validate :full_or_half_pay
+    
+
+    private
+        
+        def full_or_half_pay
+            unless full_pay.blank? ^ half_pay.blank?
+                errors.add(:base, "Add only full or half days per absence. Add a new absence with the same instance number.")
+            end
+        end
+
 end

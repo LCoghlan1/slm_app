@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= debug(params) %>
+
   <div class="field">
     <%= form.label :instance_no %>
     <%= form.text_area :instance_no %>
@@ -42,7 +44,7 @@
   </div>
 
   <div class="field">
-    <%= form.hidden_field :employee_id, :value => params[:employee_id] %>
+    <%= form.hidden_field :employee_id, :value => @employee_id %>
   </div>
 
   <div class="actions">
