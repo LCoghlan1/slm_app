@@ -1,10 +1,8 @@
 class Absence < ApplicationRecord
   
-  belongs_to :employee
-  
-    validates :date, presence: true
-    validates :full_pay, presence: true
-  
+  belongs_to :employee, optional: true
+    
+    validates :instance_no, presence: true
     validate :full_or_half_pay
     
 

@@ -22,8 +22,8 @@ class AbsencesController < ApplicationController
   
   # GET /absences/new
   def new
-    @employee_id = params[:employee_id]
-    @absence = Absence.new
+    @employee = Employee.find(params[:employee_id])
+    @absence = Absence.new(employee_id: params[:employee_id])
   end
 
   # GET /absences/1/edit
@@ -31,16 +31,16 @@ class AbsencesController < ApplicationController
   end
 
   # POST /absences or /absences.json
+# Controller
   def create
-    @employee = Employee.find(params[:employee_id])
+    # just to make sure if the employee exists
     @absence = Absence.new(absence_params)
-
+  
     respond_to do |format|
       if @absence.save
-        format.html { redirect_to @absence, notice: "Absence was successfully created." }
+        format.html { redirect_to employee_url(@absence.employee_id), :controller => :employees, notice: "Absence was successfully created." }
         format.json { render :show, status: :created, location: @absence }
       else
-        @employee_id = @employee.id
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @absence.errors, status: :unprocessable_entity }
       end

@@ -1,4 +1,4 @@
-<%= form_with(model: absence) do |form| %>
+<%= form_with(model: [employee, absence]) do |form| %>
   <% if absence.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(absence.errors.count, "error") %> prohibited this absence from being saved:</h2>
@@ -10,8 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-  <%= debug(params) %>
 
   <div class="field">
     <%= form.label :instance_no %>
@@ -44,7 +42,7 @@
   </div>
 
   <div class="field">
-    <%= form.hidden_field :employee_id, :value => @employee_id %>
+    <%= form.hidden_field :employee_id %>
   </div>
 
   <div class="actions">

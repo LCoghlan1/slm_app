@@ -1,5 +1,5 @@
-<h1>New Absence</h1>
+<h1>New Absence for <%= @employee.firstName %> <%= @employee.lastName %></h1>
 
-<%= render 'form', absence: @absence %>
+<%= render 'form', absence: @absence, employee: @employee %>
 
 <%= link_to 'Back', absences_path %>

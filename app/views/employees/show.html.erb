@@ -48,7 +48,7 @@
   </tbody>
 </table>
 
-<%= link_to 'Add Absence', :controller => :absences, :action => :new, :employee_id => @employee.id %><br>
+<%= link_to 'Add Absence', new_employee_absence_path(employee_id: @employee.id), class: "btn btn-outline-info" %><br>
 <%= link_to 'Absence Calculator', :controller => :absences, :action => :index, :employee_id => @employee.id %>
 
 <br>
