@@ -1,20 +1,16 @@
 class AbsencesController < ApplicationController
-  before_action :set_absence, only: %i[ show edit update destroy ]
+  before_action :set_absence, only: %i[ show update destroy ]
 
   # GET /absences or /absences.json
   def index
 
-    @employee = Employee.find_by(params[:employee_id])
+    @absence = Absence.find_by(employee_id: params[:employee_id])
+    @employee = Employee.find(params[:employee_id])
     @q = Absence.ransack(params[:q])
-    @absences = @q.result.where(employee_id: params[:employee_id])
+    @absences = @q.result.where(employee_id: @absence.employee.id)
     
   end
   
-  def search
-    index
-    render :index
-  end
-
   # GET /absences/1 or /absences/1.json
   def show
     
@@ -28,6 +24,8 @@ class AbsencesController < ApplicationController
 
   # GET /absences/1/edit
   def edit
+    @absence = Absence.find(params[:employee_id])
+    @employee = Employee.find(params[:id])
   end
 
   # POST /absences or /absences.json
@@ -51,7 +49,7 @@ class AbsencesController < ApplicationController
   def update
     respond_to do |format|
       if @absence.update(absence_params)
-        format.html { redirect_to @absence, notice: "Absence was successfully updated." }
+        format.html { redirect_to employee_url(@absence.employee_id), notice: "Absence was successfully updated." }
         format.json { render :show, status: :ok, location: @absence }
       else
         format.html { render :edit, status: :unprocessable_entity }

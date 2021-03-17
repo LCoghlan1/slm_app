@@ -41,7 +41,7 @@
         <th scope="row"><%= absence.full_pay %></th>
         <th scope="row"><%= absence.half_pay %></th>
         <th scope="row"><%= absence.description %></th>
-        <td><%= link_to 'Edit', edit_absence_path(absence), class: "btn btn-outline-info" %></td>
+        <td><%= link_to 'Edit', edit_employee_absence_path(absence), class: "btn btn-outline-info" %></td>
         <td><%= link_to 'Delete', absence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
       </tr>
     <% end %>
@@ -49,7 +49,7 @@
 </table>
 
 <%= link_to 'Add Absence', new_employee_absence_path(employee_id: @employee.id), class: "btn btn-outline-info" %><br>
-<%= link_to 'Absence Calculator', :controller => :absences, :action => :index, :employee_id => @employee.id %>
+<%= link_to 'Absence Calculator', absences_path(employee_id: @employee.id), class: "btn btn-outline-info" %>
 
 <br>
 

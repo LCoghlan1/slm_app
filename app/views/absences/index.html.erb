@@ -8,11 +8,9 @@
 <h3>Search Records by End Date</h3>
 
 <p>Search records of <%= @employee.firstName %> <%= @employee.lastName %></p>
-<%= [params] %>
 <br>
   From: <%= f.date_select :end_date_gteq %><br><br>
   To: <%= f.date_select :end_date_lteq %><br>
-  <%= f.hidden_field :employee_id %>
 
   <%= f.submit "Search", class: "btn btn-info mt-4" %>
   
@@ -21,6 +19,7 @@
 <table class="table table-striped mt-4">
   <thead>
     <tr>
+      <th scope="col">ID</th>
       <th scope="col"><%= sort_link(@q, :date , 'Start Date') %></th>
       <th scope="col"><%= sort_link(@q, :end_date, 'End Date') %></th>
       <th scope="col"><%= sort_link(@q, :full_pay, 'Full Pay') %></th>
@@ -33,6 +32,7 @@
   <tbody>
     <% @absences.each do |absence| %>
       <tr>
+        <td><%= absence.employee_id %></td>
         <td><%= absence.date %></td>
         <td><%= absence.end_date %></td>
         <td><%= absence.full_pay %></td>
