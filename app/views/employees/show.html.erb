@@ -1,84 +1,74 @@
 <p id="notice"><%= notice %></p>
-
+<br>
 <div class="card mb-4">
   <div class="card-header">
-    Employee Record
-  </div>
-  <div class="card-body">
     <h5 class="card-title"><%= @employee.firstName %> <%= @employee.lastName %></h5>
-    <p class="card-text">Location: <%= @employee.location %></p>
-    <p class="card-text">Hours per Week: <%= @employee.workHours %></p>
-    <p class="card-text">Max Entitlement: <%= @employee.entitlement %></p>
-    
-    <%= link_to 'Edit Employee Details', edit_employee_path(@employee), class: "btn btn-outline-info" %> 
-    
-</div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="card-body">
+        <h5 class="card-title">Employee Details</h5><br>
+        <p class="card-text"><strong>SLM ID Number:</strong> <%= @employee.id %></p>
+        <p class="card-text"><strong>Location:</strong> <%= @employee.location %></p>
+        <p class="card-text"><strong>Hours per Week:</strong> <%= @employee.workHours %></p>
+        <p class="card-text"><strong>Max Entitlement:</strong> <%= @employee.entitlement %></p>
+      </div> 
+    </div>
+    <div class="col-4">
+      <div class="card-body">
+        <h5 class="card-title">Sick Leave Totals</h5><br>
+          <p><strong>Instances:</strong> <%= @absence.distinct.count(:instance_no) %></p>
+          <p><strong>Days at Full Pay:</strong> <%= @absence.sum(:full_pay) %></p>
+          <p><strong>Days at Half Pay:</strong> <%= @absence.sum(:half_pay) %></p>
+          <p><strong>Days:</strong> <%= @absence.sum(:full_pay) + @absence.sum(:half_pay) %></p>
+      </div> 
+    </div>
+    <div class="col 2">
+      <div class="card-body">
+        <%= link_to 'Edit Employee Details', edit_employee_path(@employee), class: "btn btn-outline-info btn-block" %><br>
+        <%= link_to 'Add Absence', new_employee_absence_path(employee_id: @employee.id), class: "btn btn-info btn-block" %><br>
+        <%= link_to 'Absence Calculator', absences_path(employee_id: @employee.id), class: "btn btn-outline-info btn-block" %><br>
+        <%= link_to 'Back to Employee List', employees_path, class: "btn btn-dark btn-block " %><br>
+      </div> 
+    </div>
+  </div>
 
 </div>
-
-
-<div class="p-3 mb-2 bg-info text-white mt-4"><strong>Absence Record</strong></div>
-
-<table class="table table-striped mt-4">
-
-  <thead>
-    <tr>
-      <th scope="col"><strong>IN</strong></th>
-      <th scope="col"><strong>Start Date</strong></th>
-      <th scope="col"><strong>End Date</strong></th>
-      <th scope="col"><strong>Full Pay Days</strong></th>
-      <th scope="col"><strong>Half Pay Days</strong></th>
-      <th scope="col"><strong>Description</strong></th>
-      <th colspan="2"><strong>Actions</strong></td>
-    </tr> 
-  </thead>
-  <tbody>
-    <% @absence.each do |absence| %>
+<div class="card mb-4">
+  <div class="p-3 mb-2 bg-info text-white mt-4"><strong>Absence Record</strong></div>
+  
+  <table class="table table-striped mt-4">
+  
+    <thead>
       <tr>
-        <th scope="row"><%= absence.instance_no %></th>
-        <th scope="row"><%= absence.date %></th>
-        <th scope="row"><%= absence.end_date %></th>
-        <th scope="row"><%= absence.full_pay %></th>
-        <th scope="row"><%= absence.half_pay %></th>
-        <th scope="row"><%= absence.description %></th>
-        <td><%= link_to 'Edit', edit_employee_absence_path(absence), class: "btn btn-outline-info" %></td>
-        <td><%= link_to 'Delete', absence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to 'Add Absence', new_employee_absence_path(employee_id: @employee.id), class: "btn btn-outline-info" %><br>
-<%= link_to 'Absence Calculator', absences_path(employee_id: @employee.id), class: "btn btn-outline-info" %>
-
+        <th scope="col"><strong>IN</strong></th>
+        <th scope="col"><strong>Start Date</strong></th>
+        <th scope="col"><strong>End Date</strong></th>
+        <th scope="col"><strong>Full Pay Days</strong></th>
+        <th scope="col"><strong>Half Pay Days</strong></th>
+        <th scope="col"><strong>Description</strong></th>
+        <th colspan="2"><strong>Actions</strong></td>
+      </tr> 
+    </thead>
+    <tbody>
+      <% @absence.each do |absence| %>
+        <tr>
+          <th scope="row"><%= absence.instance_no %></th>
+          <th scope="row"><%= absence.date %></th>
+          <th scope="row"><%= absence.end_date %></th>
+          <th scope="row"><%= absence.full_pay %></th>
+          <th scope="row"><%= absence.half_pay %></th>
+          <th scope="row"><%= absence.description %></th>
+          <td><%= link_to 'Edit', edit_employee_absence_path(absence), class: "btn btn-outline-info" %></td>
+          <td><%= link_to 'Delete', absence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br>
 
-<div class="p-3 mb-2 bg-secondary text-white mt-4"><strong>Totals</strong></div>
-
-<table class="table table-striped mt-4">
-  <thead>
-    <tr>
-      <th scope="col"><strong>Total Instances</strong></th>
-      <th scope="col"><strong>Total Full Days</strong></th>
-      <th scope="col"><strong>Total Half Days</strong></th>
-      <th scope="col"><strong>Total Days</strong></th>
-    </tr> 
-  </thead>
-  <tbody>
-      <tr>
-        <th scope="row"><%= @absence.distinct.count(:instance_no) %></th>
-        <th scope="row"><%= @absence.sum(:full_pay) %></th>
-        <th scope="row"><%= @absence.sum(:half_pay) %></th>
-        <th scope="row"><%= @absence.sum(:full_pay) + @absence.sum(:half_pay) %></th>
-      </tr>
-  </tbody>
-</table>
   
-  <br>  
-  
-  <%= link_to 'Back to Employee List', employees_path, class: "btn btn-dark mb-4" %>
-  
-  <br>
 
 
 
