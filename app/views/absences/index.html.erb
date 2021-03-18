@@ -7,10 +7,11 @@
 
 <h3>Search Records by End Date</h3>
 
-<p>Search records of <%= @employee.firstName %> <%= @employee.lastName %></p>
 <br>
+  
   From: <%= f.date_select :end_date_gteq %><br><br>
   To: <%= f.date_select :end_date_lteq %><br>
+  <%= f.text_field :employee_id_eq %>
 
   <%= f.submit "Search", class: "btn btn-info mt-4" %>
   
@@ -37,15 +38,33 @@
         <td><%= absence.end_date %></td>
         <td><%= absence.full_pay %></td>
         <td><%= absence.half_pay %></td>
-        <td><%= absence.description %></td>
-        <td><%= link_to 'Edit', edit_absence_path(absence), class: "btn btn-outline-info" %></td>
-        <td><%= link_to 'Delete', absence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
+        <td colspan="2"><%= absence.description %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 
-<br>
+<hr>
 
-<%= link_to 'New Absence', new_absence_path %>
+<div class="p-3 mb-2 bg-secondary text-white mt-4"><strong>Totals</strong></div>
+
+<table class="table table-striped mt-4">
+  <thead>
+    <tr>
+      <th scope="col"><strong>Total Full Days</strong></th>
+      <th scope="col"><strong>Total Half Days</strong></th>
+      <th scope="col"><strong>Total Days</strong></th>
+    </tr> 
+  </thead>
+  <tbody>
+      <tr>
+        <th scope="row"><%= @absences.sum(:full_pay) %></th>
+        <th scope="row"><%= @absences.sum(:half_pay) %></th>
+        <th scope="row"><%= @absences.sum(:full_pay) + @absences.sum(:half_pay) %></th>
+      </tr>
+  </tbody>
+</table>
+
+
+<%= link_to 'Back to Employee List', employees_path, class: "btn btn-dark mb-4" %>

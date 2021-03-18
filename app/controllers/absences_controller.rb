@@ -4,10 +4,8 @@ class AbsencesController < ApplicationController
   # GET /absences or /absences.json
   def index
 
-    @absence = Absence.find_by(employee_id: params[:employee_id])
-    @employee = Employee.find(params[:employee_id])
     @q = Absence.ransack(params[:q])
-    @absences = @q.result.where(employee_id: @absence.employee.id)
+    @absences = @q.result
     
   end
   
@@ -49,7 +47,7 @@ class AbsencesController < ApplicationController
   def update
     respond_to do |format|
       if @absence.update(absence_params)
-        format.html { redirect_to employee_url(@absence.employee_id), notice: "Absence was successfully updated." }
+        format.html { redirect_to employee_url(@absence.employee_id), :controller => :employees, notice: "Absence was successfully updated." }
         format.json { render :show, status: :ok, location: @absence }
       else
         format.html { render :edit, status: :unprocessable_entity }
