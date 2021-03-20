@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_13_132436) do
+ActiveRecord::Schema.define(version: 2021_03_20_161004) do
 
   create_table "absences", force: :cascade do |t|
     t.date "date"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_03_13_132436) do
     t.datetime "updated_at", precision: 6, null: false
     t.date "end_date"
     t.integer "instance_no"
+    t.string "image"
     t.index ["employee_id"], name: "index_absences_on_employee_id"
   end
 

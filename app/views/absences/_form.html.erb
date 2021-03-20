@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+  
   <div class="field">
     <%= form.label :instance_no %>
     <%= form.text_area :instance_no %>
@@ -40,12 +40,20 @@
     <%= form.label :description %>
     <%= form.text_area :description %>
   </div>
-
-  <div class="field">
-    <%= form.hidden_field :employee_id %>
+  
+  <div class="form-group">
+    <%= form.file_field :image %>
   </div>
-
+  
+  <% if @absence.image? %>
+  <div class="field"> 
+    <%= form.check_box :remove_image %>
+    Remove Image
+  </div>
+  <% end %>
+  
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+

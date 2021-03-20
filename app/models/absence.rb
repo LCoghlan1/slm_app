@@ -5,7 +5,8 @@ class Absence < ApplicationRecord
     validates :instance_no, presence: true
     validate :full_or_half_pay
     
-
+    mount_uploader :image, ImageUploader
+    
     private
         
         def full_or_half_pay

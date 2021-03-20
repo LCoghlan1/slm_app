@@ -7,6 +7,7 @@ end
   
 resources :absences 
   
+get 'absences/image', to: 'absence#image'
   
   
   devise_for :users

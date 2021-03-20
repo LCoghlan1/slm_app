@@ -59,6 +59,11 @@
           <th scope="row"><%= absence.full_pay %></th>
           <th scope="row"><%= absence.half_pay %></th>
           <th scope="row"><%= absence.description %></th>
+          <% if absence.image? %>
+            <td><%= link_to 'View File', absence_path(absence), class: "btn btn-outline-info" %></td>
+            <% else %>
+            <td><%= "No File Uploaded" %></td>
+          <% end %>
           <td><%= link_to 'Edit', edit_employee_absence_path(absence), class: "btn btn-outline-info" %></td>
           <td><%= link_to 'Delete', absence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
         </tr>

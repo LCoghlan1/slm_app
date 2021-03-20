@@ -1,34 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @absence.date %>
+  <%= image_tag @absence.image.url %>
 </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @absence.end_date %>
-</p>
-
-<p>
-  <strong>Full pay:</strong>
-  <%= @absence.full_pay %>
-</p>
-
-<p>
-  <strong>Half pay:</strong>
-  <%= @absence.half_pay %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @absence.description %>
-</p>
-
-<p>
-  <strong>Employee:</strong>
-  <%= @absence.employee_id %>
-</p>
-
-<%= link_to 'Edit', edit_absence_path(@absence) %> |
-<%= link_to 'Back', absences_path %>
+<%= link_to 'Back to Employee List', employees_path, class: "btn btn-secondary" %>
