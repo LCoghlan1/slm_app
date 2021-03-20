@@ -6,6 +6,7 @@
     <hr>
     <div class="row">
     <div class="col">
+      
     <p class="card-text">
     
       <%= search_form_for @q do |f| %>
@@ -16,17 +17,21 @@
     
       <%= f.submit "Search", class: "btn btn-info mr-4" %>
       
-      <%= link_to 'Add Employee', new_employee_path, class: "btn btn-outline-info" %>
-    
       <% end %>
       </p>
       
       </div>
     <div class="col">
+ 
       <p class="card-text">
-        hello
+        
+        <p><strong>Number of Employees:</strong> <%= @employees.count %></p>
+        <br>
+        <%= link_to 'Add Employee', new_employee_path, class: "btn btn-outline-info" %>
       
       </p>
+      
+ 
     </div>
     </div>
     

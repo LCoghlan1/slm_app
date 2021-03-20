@@ -20,7 +20,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees/1/edit
   def edit
- 
+    @absence = Absence.where(employee_id: @employee.id)
   end
 
   # POST /employees or /employees.json
