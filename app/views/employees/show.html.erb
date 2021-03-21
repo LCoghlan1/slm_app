@@ -23,17 +23,37 @@
           <p><strong>Days:</strong> <%= @absence.sum(:full_pay) + @absence.sum(:half_pay) %></p>
       </div> 
     </div>
-    <div class="col 2">
+    <div class="col-4">
       <div class="card-body">
-        <%= link_to 'Edit Employee Details', edit_employee_path(@employee), class: "btn btn-outline-info btn-block" %><br>
-        <%= link_to 'Add Absence', new_employee_absence_path(employee_id: @employee.id), class: "btn btn-info btn-block" %><br>
-        <%= link_to 'Absence Calculator', absences_path(employee_id: @employee.id), class: "btn btn-outline-info btn-block" %><br>
-        <%= link_to 'Back to Employee List', employees_path, class: "btn btn-dark btn-block " %><br>
+        <h5 class="card-title">Filter Records by End Date</h5><br>
+        <%= search_form_for @q, url: employee_path do |f| %>
+
+          
+          From: <%= f.date_select :end_date_gteq %><br><br>
+          To: <%= f.date_select :end_date_lteq %><br><br>
+        
+        
+          <%= f.submit "Search", class: "btn btn-info mr-4" %>
+          
+        <% end %>
       </div> 
     </div>
   </div>
-
 </div>
+
+<div class="row mb-4">
+  <div class="col-4">
+    <%= link_to 'Edit Employee Details', edit_employee_path(@employee), class: "btn btn-outline-info btn-block" %>
+  </div>
+  <div class="col-4">
+    <%= link_to 'Add Absence', new_employee_absence_path(employee_id: @employee.id), class: "btn btn-info btn-block" %>
+  </div>
+  <div class="col-4">
+    <%= link_to 'Back to Employee List', employees_path, class: "btn btn-dark btn-block " %>
+  </div>
+</div>
+
+
 <div class="card mb-4">
   <div class="p-3 mb-2 bg-info text-white mt-4"><strong>Absence Record</strong></div>
   
