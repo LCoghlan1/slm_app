@@ -1,16 +1,50 @@
 <div class="card mb-3">
   <div class="row no-gutters">
-    <div class="col-md-4">
+    <div class="col-2">
       <%= image_tag "CILogo.png" %>
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">Sick Leave Management Application</h5>
+        <h5 class="card-title">Citizens Information - Sick Leave Management Application</h5>
         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
       </div>
     </div>
   </div>
 </div>
-
+<div class="row">
+  <div class="col-4">
+    <div class="card mb-3">
+      <div class="card-header">
+        <h5 class="card-title"><center>Employee Records</center></h5>
+      </div>
+      <div class="card-body">
+        <p>Number of Employees: <%= @employees.count %></p>
+        <p>Number of Absences:<%= @absences.distinct.count(:instance_no) %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card mb-3">
+      <div class="card-header">
+        <h5 class="card-title"><center>Employee Records</center></h5>
+      </div>
+      <div class="card-body">
+        <p>Number of Employees: <%= @employees.count %></p>
+        <p>Number of Employees:<%= @absences.count %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card mb-3">
+      <div class="card-header">
+        <h5 class="card-title"><center>Employee Records</center></h5>
+      </div>
+      <div class="card-body">
+        <p>Number of Employees: <%= @employees.count %></p>
+        <p>Number of Employees:<%= @absences.count %></p>
+      </div>
+    </div>
+  </div>
+</div>
 
