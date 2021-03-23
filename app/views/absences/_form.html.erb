@@ -1,62 +1,65 @@
-<%= form_with(model: @absence, url: [@employee, @absence]) do |form| %>
-  <% if absence.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(absence.errors.count, "error") %> prohibited this absence from being saved:</h2>
 
-      <ul>
-        <% absence.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-  <div class="field">
-    <%= form.label :instance_no %>
-    <%= form.text_area :instance_no %>
-  </div>
 
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date %>
+<div class="row">
+  <div class="col-9">
+    <%= form_with(model: @absence, url: [@employee, @absence]) do |form| %>
+    
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <%= form.label :date, "Start Date" %><br>
+          <%= form.date_select :date %>
+        </div>
+        <div class="form-group col-md-4">
+          <%= form.label :end_date %><br>
+          <%= form.date_select :end_date %>
+        </div>
+      </div>
+      <br>
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <%= form.label "Instance Number" %>
+          <%= form.text_field :instance_no, autofocus: true, autocomplete: 'instance number', class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-2">
+          <%= form.label :full_pay %>
+          <%= form.text_field :full_pay, autofocus: true, autocomplete: 'days at full pay', class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-2">
+          <%= form.label :half_pay %>
+          <%= form.text_field :half_pay, autofocus: true, autocomplete: 'days at half pay', class: 'form-control' %>
+        </div>
+      </div>
+      <br>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <%= form.label :description %>
+          <%= form.text_area :description, autofocus: true, autocomplete: 'description', class: 'form-control' %>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <%= form.file_field :image %>
+      </div>
+      <% if @absence.image? %>
+        <div class="field"> 
+          <%= form.check_box :remove_image %>
+          Remove Image
+        </div>
+      <% end %>
+      
+      <div class="field">
+        <%= form.hidden_field :employee_id %>
+      </div>
+      <br>
+      <div class="form-group">
+        <%= form.submit %>
+      </div>
+    <% end %>
+    
   </div>
-  
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.date_select :end_date %>
-  </div>
+</div>
 
-  <div class="field">
-    <%= form.label :full_pay %>
-    <%= form.text_area :full_pay %>
-  </div>
 
-  <div class="field">
-    <%= form.label :half_pay %>
-    <%= form.text_area :half_pay %>
-  </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-  
-  <div class="form-group">
-    <%= form.file_field :image %>
-  </div>
-  
-  <% if @absence.image? %>
-  <div class="field"> 
-    <%= form.check_box :remove_image %>
-    Remove Image
-  </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.hidden_field :employee_id %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
