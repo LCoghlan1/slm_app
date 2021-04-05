@@ -40,7 +40,7 @@ class AbsencesController < ApplicationController
   
     respond_to do |format|
       if @absence.save
-        format.html { redirect_to employee_url(@absence.employee_id), :controller => :employees }
+        format.html { redirect_to employee_url(@absence.employee_id), :controller => :employees, notice: "Absence was successfully created." }
         format.json { render :show, status: :created, location: @absence }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class AbsencesController < ApplicationController
   def update
     respond_to do |format|
       if @absence.update(absence_params)
-        format.html { redirect_to employee_url(@absence.employee_id), :controller => :employees }
+        format.html { redirect_to employee_url(@absence.employee_id), :controller => :employees, notice: "Absence was successfully updated." }
         format.json { render :show, status: :ok, location: @absence }
       else
         format.html { render :edit, status: :unprocessable_entity }
