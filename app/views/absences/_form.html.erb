@@ -1,5 +1,4 @@
 
-
 <div class="row">
   <div class="col-9">
     <%= form_with(model: @absence, url: [@employee, @absence]) do |form| %>
@@ -7,11 +6,11 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <%= form.label :date, "Start Date" %><br>
-          <%= form.date_select :date %>
+          <%= form.date_field :date, class: 'form-control input-sm', 'datepicker' => true %>
         </div>
         <div class="form-group col-md-4">
           <%= form.label :end_date %><br>
-          <%= form.date_select :end_date %>
+          <%= form.date_field :end_date, class: 'form-control input-sm', 'datepicker' => true %>
         </div>
       </div>
       <br>

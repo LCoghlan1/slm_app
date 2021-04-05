@@ -1,61 +1,57 @@
 <p id="notice"><%= notice %></p>
 <br>
-<div class="card mb-4">
-  <div class="card-header">
-    <h5 class="card-title"><%= @employee.firstName %> <%= @employee.lastName %></h5>
-  </div>
-  <div class="row">
-    <div class="col-4">
+
+<%= link_to 'Back to Employee List', employees_path, class: " btn btn-dark mb-4" %>
+
+<div class="p-3 mb-2 bg-info text-white mb-4"><h5><%= @employee.firstName %> <%= @employee.lastName %></h5></div>
+
+<div class="row mb-4">
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Employee Details</h5>
+      </div>
       <div class="card-body">
-        <h5 class="card-title">Employee Details</h5><br>
         <p class="card-text"><strong>SLM ID Number:</strong> <%= @employee.id %></p>
         <p class="card-text"><strong>Location:</strong> <%= @employee.location %></p>
         <p class="card-text"><strong>Hours per Week:</strong> <%= @employee.workHours %></p>
-        <p class="card-text"><strong>Max Entitlement:</strong> <%= @employee.entitlement %></p>
+        <p class="card-text"><strong>Entitlement:</strong> <%= @employee.entitlement %></p>
+        <%= link_to 'Edit Employee Details', edit_employee_path(@employee), class: "btn btn-outline-info btn-block" %>
       </div> 
     </div>
-    <div class="col-4">
+  </div> 
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Sick Leave Record</h5>
+      </div>
       <div class="card-body">
-        <h5 class="card-title">Sick Leave Totals</h5><br>
-          <p><strong>Instances:</strong> <%= @absence.distinct.count(:instance_no) %></p>
-          <p><strong>Days at Full Pay:</strong> <%= @absence.sum(:full_pay) %></p>
-          <p><strong>Days at Half Pay:</strong> <%= @absence.sum(:half_pay) %></p>
-          <p><strong>Days:</strong> <%= @absence.sum(:full_pay) + @absence.sum(:half_pay) %></p>
+        <p class="card-text"><strong>Instances:</strong> <%= @absence.distinct.count(:instance_no) %></p>
+        <p class="card-text"><strong>Days at Full Pay:</strong> <%= @absence.sum(:full_pay) %></p>
+        <p class="card-text"><strong>Days at Half Pay:</strong> <%= @absence.sum(:half_pay) %></p>
+        <p class="card-text"><strong>Days:</strong> <%= @absence.sum(:full_pay) + @absence.sum(:half_pay) %></p>
+        <%= link_to 'Add Absence', new_employee_absence_path(employee_id: @employee.id), class: "btn btn-info btn-block" %>
       </div> 
     </div>
-    <div class="col-4">
-      <div class="card-body">
-        <h5 class="card-title">Filter Records by End Date</h5><br>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Filter Record by End Date</h5>
+      </div>
+    <div class="card-body">
         <%= search_form_for @q, url: employee_path do |f| %>
-
-          
-          From: <%= f.date_select :end_date_gteq %><br><br>
-          To: <%= f.date_select :end_date_lteq %><br><br>
-        
-        
-          <%= f.submit "Search", class: "btn btn-info mr-4" %>
-          
+          <p>From: <%= f.date_field :end_date_gteq, class: 'form-control input-sm', 'datepicker' => true %></p>
+          <p>To: <%= f.date_field :end_date_lteq, class: 'form-control input-sm', 'datepicker' => true %></p>
+          <%= f.submit "Search", class: "btn btn-outline-secondary btn-block" %>
         <% end %>
       </div> 
     </div>
   </div>
 </div>
 
-<div class="row mb-4">
-  <div class="col-4">
-    <%= link_to 'Edit Employee Details', edit_employee_path(@employee), class: "btn btn-outline-info btn-block" %>
-  </div>
-  <div class="col-4">
-    <%= link_to 'Add Absence', new_employee_absence_path(employee_id: @employee.id), class: "btn btn-info btn-block" %>
-  </div>
-  <div class="col-4">
-    <%= link_to 'Back to Employee List', employees_path, class: "btn btn-dark btn-block " %>
-  </div>
-</div>
-
-
 <div class="card mb-4">
-  <div class="p-3 mb-2 bg-info text-white mt-4"><strong>Absence Record</strong></div>
+  <div class="p-3 mb-2 bg-secondary text-white mt-4"><h5>Absence Record</h5></div>
   
   <table class="table table-striped mt-4">
   
