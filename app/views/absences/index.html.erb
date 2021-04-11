@@ -1,28 +1,44 @@
 <p id="notice"><%= notice %></p>
 
 
-<h1>Absence Calculator</h1>
-
-<%= search_form_for @q do |f| %>
-
-<h3>Search Records by End Date</h3>
+<h1>Absence Report</h1>
 
 <br>
-  
-  From: <%= f.date_select :end_date_gteq %><br><br>
-  To: <%= f.date_select :end_date_lteq %><br><br>
-  <%= f.text_field :employee_id_eq, placeholder: "Enter SLM ID" %><br><br>
 
-  <%= f.submit "Search", class: "btn btn-info mr-4" %>
-  
-  <%= link_to 'Back to Employee List', employees_path, class: "btn btn-dark" %>
-  
-<% end %>
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Sick Leave Record</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><strong>Instances:</strong> <%= @absences.distinct.count(:instance_no) %></p>
+        <p class="card-text"><strong>Days at Full Pay:</strong> <%= @absences.sum(:full_pay) %></p>
+        <p class="card-text"><strong>Days at Half Pay:</strong> <%= @absences.sum(:half_pay) %></p>
+        <p class="card-text"><strong>Days:</strong> <%= @absences.sum(:full_pay) + @absences.sum(:half_pay) %></p>
+      </div> 
+    </div>
+  </div>
 
+  <div class="col-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Filter Record by End Date</h5>
+      </div>
+    <div class="card-body">
+        <%= search_form_for @q do |f| %>
+          <p>From: <%= f.date_field :end_date_gteq, class: 'form-control input-sm', 'datepicker' => true %></p>
+          <p>To: <%= f.date_field :end_date_lteq, class: 'form-control input-sm', 'datepicker' => true %></p>
+          <%= f.submit "Search", class: "btn btn-outline-secondary btn-block" %>
+        <% end %>
+      </div> 
+    </div>
+  </div>
+</div>
+<div class="p-3 mb-2 bg-secondary text-white mt-4"><h5>Absence Records</h5></div>
 <table class="table table-striped mt-4">
   <thead>
     <tr>
-      <th scope="col">SLM ID</th>
       <th scope="col"><%= sort_link(@q, :date , 'Start Date') %></th>
       <th scope="col"><%= sort_link(@q, :end_date, 'End Date') %></th>
       <th scope="col"><%= sort_link(@q, :full_pay, 'Full Pay') %></th>
@@ -35,7 +51,6 @@
   <tbody>
     <% @absences.each do |absence| %>
       <tr>
-        <td><%= absence.employee_id %></td>
         <td><%= absence.date %></td>
         <td><%= absence.end_date %></td>
         <td><%= absence.full_pay %></td>
@@ -47,27 +62,6 @@
   </tbody>
 </table>
 
-
-<hr>
-
-<div class="p-3 mb-2 bg-secondary text-white mt-4"><strong>Totals</strong></div>
-
-<table class="table table-striped mt-4">
-  <thead>
-    <tr>
-      <th scope="col"><strong>Total Full Days</strong></th>
-      <th scope="col"><strong>Total Half Days</strong></th>
-      <th scope="col"><strong>Total Days</strong></th>
-    </tr> 
-  </thead>
-  <tbody>
-      <tr>
-        <th scope="row"><%= @absences.sum(:full_pay) %></th>
-        <th scope="row"><%= @absences.sum(:half_pay) %></th>
-        <th scope="row"><%= @absences.sum(:full_pay) + @absences.sum(:half_pay) %></th>
-      </tr>
-  </tbody>
-</table>
 
 
 

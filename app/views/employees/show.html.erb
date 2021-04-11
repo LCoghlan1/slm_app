@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <br>
 
-<%= link_to 'Back to Employee List', employees_path, class: " btn btn-dark mb-4" %>
+<%= link_to 'Back to Employee List', employees_path, class: "btn btn-outline-secondary mb-4" %>
 
 <div class="p-3 mb-2 bg-info text-white mb-4"><h5><%= @employee.firstName %> <%= @employee.lastName %></h5></div>
 
@@ -70,8 +70,8 @@
       <% @absence.each do |absence| %>
         <tr>
           <th scope="row"><%= absence.instance_no %></th>
-          <th scope="row"><%= absence.date %></th>
-          <th scope="row"><%= absence.end_date %></th>
+          <th scope="row"><%= absence.date.strftime("%d/%m/%Y") %></th>
+          <th scope="row"><%= absence.end_date.strftime("%d/%m/%Y") %></th>
           <th scope="row"><%= absence.full_pay %></th>
           <th scope="row"><%= absence.half_pay %></th>
           <th scope="row"><%= absence.description %></th>
