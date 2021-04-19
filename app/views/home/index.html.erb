@@ -16,39 +16,39 @@
   <div class="row no-gutters">
     <div class="col-12">
       <div class="card-body">
-        <h4 class="card-title">Messages</h4>
-        <hr>
-        <table>
+        <h4 class="card-title">Notice Board</h4>
+          <table class="table table-striped mt-4">
           <thead>
             <tr>
-              <th>Subject</th>
-              <th>Message</th>
-              <th>User</th>
-              <th>Created At</th>
-              <th colspan="3"></th>
+              <th><strong>Subject</strong></th>
+              <th><strong>Message</strong></th>
+              <th><strong>User</strong></th>
+              <th><strong>Created At</strong></th>
+              <% if current_user.admin %>
+                <th colspan="3"></th>
+              <% end %>
             </tr>
           </thead>
         
           <tbody>
             <% @messages.each do |message| %>
               <tr>
-                <td><%= message.title %></td>
+                <td scope="row"><%= message.title %></td>
                 <td><%= message.body %></td>
                 <td><%= message.user.firstName %> <%= message.user.lastName %></td>
-                <td><%= message.created_at %></td>
-                
-                <% if current_user || current_user.admin %>
-                  <td><%= link_to 'Show', message %></td>
-                  <td><%= link_to 'Edit', edit_message_path(message) %></td>
-                  <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= message.created_at.strftime("%T - %d/%m/%Y") %></td>
+                <% if current_user.admin %>
+                  <td><%= link_to 'Edit', edit_message_path(message), class: "btn btn-secondary" %></td>
+                  <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
                 <% end %>
               </tr>
             <% end %>
           </tbody>
         </table>
         <%== pagy_bootstrap_nav(@pagy).html_safe %>
-        <%= link_to 'New Message', new_message_path, class: "btn btn-secondary mt-4" %>
-        <%= link_to 'Message Board', messages_path, class: "btn btn-outline-secondary mt-4" %>
+        <% if current_user.admin %>
+          <%= link_to 'New Message', new_message_path, class: "btn btn-secondary" %>
+        <% end %>
       </div>
     </div>
   </div>

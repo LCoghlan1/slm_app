@@ -1,5 +1,41 @@
-  <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-    <div class="container text-center">
-      <small>Copyright &copy; SLM App</small>
-    </div>
-  </footer>
+  <!-- Site footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h6>Disclaimer</h6>
+            <p class="text-justify">This application is developed for use within the Citizens Information Board and its funded network only</p>
+          </div>
+          <% if current_user %>
+          <div class="col-xs-6 col-md-3">
+            <h6>Categories</h6>
+            <ul class="footer-links">
+              <li><%= link_to 'Dashboard', root_path %></li>
+              <li><%= link_to 'Employee List', employees_path %></li>
+              <li><%= link_to 'Absence Report', absences_path %></li>
+              <li><a href="#">Documentation</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6>Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="mailto:luke.coghlan@ciboard.ie">Contact Support</a></li>
+              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </div>
+          <% end %>
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by the 
+         <a href="https://www.citizensinformationboard.ie/en/">Citizen information Board</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+</footer>

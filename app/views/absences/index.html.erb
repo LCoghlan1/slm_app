@@ -1,27 +1,24 @@
-<p id="notice"><%= notice %></p>
-
-
 <h1>Absence Report</h1>
 
 <br>
 
 <div class="row">
   <div class="col-6">
-    <div class="card">
+    <div class="card" id="report-card">
       <div class="card-header">
         <h5 class="card-title">Sick Leave Record</h5>
       </div>
       <div class="card-body">
-        <p class="card-text"><strong>Instances:</strong> <%= @absences.distinct.count(:instance_no) %></p>
+        <p class="card-text"><strong>Total Days:</strong> <%= @absences.sum(:full_pay) + @absences.sum(:half_pay) %></p>
         <p class="card-text"><strong>Days at Full Pay:</strong> <%= @absences.sum(:full_pay) %></p>
         <p class="card-text"><strong>Days at Half Pay:</strong> <%= @absences.sum(:half_pay) %></p>
-        <p class="card-text"><strong>Days:</strong> <%= @absences.sum(:full_pay) + @absences.sum(:half_pay) %></p>
+        <p class="card-text"><strong>Number of Absences:</strong> <%= @absences.count %></p>
       </div> 
     </div>
   </div>
 
   <div class="col-6">
-    <div class="card">
+    <div class="card" id="report-card">
       <div class="card-header">
         <h5 class="card-title">Filter Record by End Date</h5>
       </div>
@@ -37,12 +34,20 @@
 </div>
 
 <div class="row mt-4">
-  <div class="col-12">
+  <div class="col-6">
     <div class="card">
       <div class="card-header">
         <h5 class="card-title">Instances Entered</h5>
       </div>
     <%= line_chart @absences.group_by_day(:created_at).count %>
+    </div>
+  </div>
+    <div class="col-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Instances Entered</h5>
+      </div>
+    <%= column_chart @absence_type %>
     </div>
   </div>
 </div>
@@ -73,7 +78,5 @@
     <% end %>
   </tbody>
 </table>
-
-<%== pagy_bootstrap_nav(@pagy).html_safe %>
 
 

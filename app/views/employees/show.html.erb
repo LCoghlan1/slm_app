@@ -1,9 +1,8 @@
-<p id="notice"><%= notice %></p>
 <br>
 
 <%= link_to 'Back to Employee List', employees_path, class: "btn btn-outline-secondary mb-4" %>
 
-<div class="p-3 mb-2 bg-info text-white mb-4"><h5><%= @employee.firstName %> <%= @employee.lastName %></h5></div>
+<div class="p-3 mb-2 bg-secondary text-white mb-4"><h5><%= @employee.firstName %> <%= @employee.lastName %></h5></div>
 
 <div class="row mb-4">
   <div class="col-4">
@@ -16,7 +15,7 @@
         <p class="card-text"><strong>Location:</strong> <%= @employee.location %></p>
         <p class="card-text"><strong>Hours per Week:</strong> <%= @employee.workHours %></p>
         <p class="card-text"><strong>Entitlement:</strong> <%= @employee.entitlement %></p>
-        <%= link_to 'Edit Employee Details', edit_employee_path(@employee), class: "btn btn-outline-info btn-block" %>
+        <%= link_to 'Edit Employee Details', edit_employee_path(@employee), class: "btn btn-outline-primary btn-block" %>
       </div> 
     </div>
   </div> 
@@ -30,7 +29,7 @@
         <p class="card-text"><strong>Days at Full Pay:</strong> <%= @absence.sum(:full_pay) %></p>
         <p class="card-text"><strong>Days at Half Pay:</strong> <%= @absence.sum(:half_pay) %></p>
         <p class="card-text"><strong>Days:</strong> <%= @absence.sum(:full_pay) + @absence.sum(:half_pay) %></p>
-        <%= link_to 'Add Absence', new_employee_absence_path(employee_id: @employee.id), class: "btn btn-info btn-block" %>
+        <%= link_to 'Add Absence', new_employee_absence_path(employee_id: @employee.id), class: "btn btn-primary btn-block" %>
       </div> 
     </div>
   </div>
@@ -70,19 +69,19 @@
     <tbody>
       <% @absence.each do |absence| %>
         <tr>
-          <th scope="row"><%= absence.instance_no %></th>
-          <th scope="row"><%= absence.date.strftime("%d/%m/%Y") %></th>
-          <th scope="row"><%= absence.end_date.strftime("%d/%m/%Y") %></th>
-          <th scope="row"><%= absence.full_pay %></th>
-          <th scope="row"><%= absence.half_pay %></th>
-          <th scope="row"><%= absence.description %></th>
+          <td scope="row"><%= absence.instance_no %></td>
+          <td scope="row"><%= absence.date.strftime("%d/%m/%Y") %></td>
+          <td scope="row"><%= absence.end_date.strftime("%d/%m/%Y") %></td>
+          <td scope="row"><%= absence.full_pay %></td>
+          <td scope="row"><%= absence.half_pay %></td>
+          <td scope="row"><%= absence.description %></td>
           <% if absence.image? %>
-            <td><%= link_to 'View File', absence_path(absence), class: "btn btn-outline-info" %></td>
+            <td><%= link_to 'View File', absence_path(absence), class: "btn btn-outline-primary btn-sm" %></td>
             <% else %>
             <td><%= "No File Uploaded" %></td>
           <% end %>
-          <td><%= link_to 'Edit', edit_employee_absence_path(absence), class: "btn btn-outline-info" %></td>
-          <td><%= link_to 'Delete', absence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
+          <td><%= link_to 'Edit', edit_employee_absence_path(absence), class: "btn btn-outline-primary btn-sm" %></td>
+          <td><%= link_to 'Delete', absence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
         </tr>
       <% end %>
     </tbody>

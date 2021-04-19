@@ -5,8 +5,11 @@ class AbsencesController < ApplicationController
   def index
 
     @q = Absence.ransack(params[:q])
-    @pagy, @absences = pagy(@q.result, items: 10)
-    
+    @pagy, @absences = pagy(@q.result)
+    @absence_type = [
+        ['Full Pay', @absences.sum(:full_pay)],
+        ['Half Pay', @absences.sum(:half_pay)]
+      ]
   end
   
   def image

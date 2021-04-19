@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   # GET /messages or /messages.json
   def index
     @messages = Message.all
@@ -25,7 +26,7 @@ class MessagesController < ApplicationController
     @message.user = current_user
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: "Message was successfully created." }
+        format.html { redirect_to root_path, notice: "Message was successfully created." }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class MessagesController < ApplicationController
   def update
     respond_to do |format|
       if @message.update(message_params)
-        format.html { redirect_to @message, notice: "Message was successfully updated." }
+        format.html { redirect_to root_path, notice: "Message was successfully updated." }
         format.json { render :show, status: :ok, location: @message }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +52,7 @@ class MessagesController < ApplicationController
   def destroy
     @message.destroy
     respond_to do |format|
-      format.html { redirect_to messages_url, notice: "Message was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "Message was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,5 +66,12 @@ class MessagesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def message_params
       params.require(:message).permit(:title, :body)
+    end
+    
+    def require_same_user
+      if current_user != @message.user && !current_user.admin?
+         flash[:alert] = "You cannot edit this message"
+         redirect_to root_path
+      end
     end
 end
