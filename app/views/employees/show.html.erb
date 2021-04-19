@@ -66,6 +66,7 @@
         <th colspan="3"><center><strong>Actions</strong></center></td>
       </tr> 
     </thead>
+    
     <tbody>
       <% @absence.each do |absence| %>
         <tr>
@@ -85,8 +86,12 @@
         </tr>
       <% end %>
     </tbody>
+    
   </table>
 </div>
+
+<%== pagy_bootstrap_nav(@pagy).html_safe %>
+
 <br>
 
   

@@ -1,5 +1,7 @@
 module ApplicationHelper
     
+    include Pagy::Frontend
+    
     def bool_to_glyph(value)
       value ? "Yes" : "No"
     end

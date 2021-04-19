@@ -35,6 +35,19 @@
     </div>
   </div>
 </div>
+
+<div class="row mt-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Instances Entered</h5>
+      </div>
+    <%= line_chart @absences.group_by_day(:created_at).count %>
+    </div>
+  </div>
+</div>
+
+
 <div class="p-3 mb-2 bg-secondary text-white mt-4"><h5>Absence Records</h5></div>
 <table class="table table-striped mt-4">
   <thead>
@@ -43,25 +56,24 @@
       <th scope="col"><%= sort_link(@q, :end_date, 'End Date') %></th>
       <th scope="col"><%= sort_link(@q, :full_pay, 'Full Pay') %></th>
       <th scope="col"><%= sort_link(@q, :half_pay, 'Half Pay') %></th>
-      <th scope="col"><%= sort_link(@q, :description, 'Description') %></th>
-      <th colspan="2"></th>
+      <th colspan="3"><%= sort_link(@q, :description, 'Description') %></th>
     </tr>
   </thead>
-
+  
   <tbody>
     <% @absences.each do |absence| %>
       <tr>
-        <td><%= absence.date %></td>
-        <td><%= absence.end_date %></td>
+        <td><%= absence.date.strftime("%d/%m/%Y") %></td>
+        <td><%= absence.end_date.strftime("%d/%m/%Y") %></td>
         <td><%= absence.full_pay %></td>
         <td><%= absence.half_pay %></td>
-        <td colspan="2"><%= absence.description %></td>
+        <td colspan="3"><%= absence.description %></td>
         <td></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-
+<%== pagy_bootstrap_nav(@pagy).html_safe %>
 
 

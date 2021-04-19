@@ -25,7 +25,9 @@ gem 'devise-bootstrap-views', '~> 1.0'
 gem "ransack", "~> 2.4"
 gem 'hirb', '~> 0.7.3'
 gem 'carrierwave', '~> 2.0'
-
+gem 'chartkick'
+gem 'groupdate'
+gem 'pagy'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

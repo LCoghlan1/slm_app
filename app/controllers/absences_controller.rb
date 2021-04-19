@@ -5,7 +5,7 @@ class AbsencesController < ApplicationController
   def index
 
     @q = Absence.ransack(params[:q])
-    @absences = @q.result
+    @pagy, @absences = pagy(@q.result, items: 10)
     
   end
   
