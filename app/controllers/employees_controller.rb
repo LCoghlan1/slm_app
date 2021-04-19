@@ -4,13 +4,13 @@ class EmployeesController < ApplicationController
   # GET /employees or /employees.json
   def index
     @q = Employee.ransack(params[:q])
-    @pagy, @employees = pagy(@q.result, items: 10)
+    @employees = @q.result
   end
 
   # GET /employees/1 or /employees/1.json
   def show
     @q = Absence.ransack(params[:q])
-    @pagy, @absence = pagy(@q.result.where(employee_id: @employee.id), items: 10)
+    @absence = @q.result.where(employee_id: @employee.id)
   end
   
 

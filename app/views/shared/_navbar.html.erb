@@ -23,8 +23,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to 'Edit Profile', edit_user_registration_path, class: "dropdown-item" %>
-          <% if current_user.admin %>
+          <% if current_user.admin? %>
             <%= link_to 'Add Message', new_message_path, class: "dropdown-item" %>
+            <%= link_to 'User List', users_index_path, class: "dropdown-item" %>
           <% end %>
           <div class="dropdown-divider"></div>
             <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "dropdown-item" %>

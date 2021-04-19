@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_142700) do
+ActiveRecord::Schema.define(version: 2021_04_19_193251) do
 
   create_table "absences", force: :cascade do |t|
     t.date "date"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 2021_04_19_142700) do
     t.integer "instance_no"
     t.string "image"
     t.index ["employee_id"], name: "index_absences_on_employee_id"
+  end
+
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
   create_table "employees", force: :cascade do |t|

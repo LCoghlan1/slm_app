@@ -11,5 +11,12 @@ class ApplicationController < ActionController::Base
        
        devise_parameter_sanitizer.permit(:account_update, keys: [:firstName, :lastName])
     end
+    
+    def require_admin
+      if !current_user.admin?
+         flash[:alert] = "Not authorised"
+         redirect_to root_path
+      end
+    end
 
 end
