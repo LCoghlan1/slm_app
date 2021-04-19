@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_20_161004) do
+ActiveRecord::Schema.define(version: 2021_04_19_142700) do
 
   create_table "absences", force: :cascade do |t|
     t.date "date"
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 2021_03_20_161004) do
     t.float "entitlement"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -52,4 +61,5 @@ ActiveRecord::Schema.define(version: 2021_03_20_161004) do
   end
 
   add_foreign_key "absences", "employees"
+  add_foreign_key "messages", "users"
 end
