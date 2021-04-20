@@ -28,6 +28,8 @@ gem 'carrierwave', '~> 2.0'
 gem 'chartkick'
 gem 'groupdate'
 gem 'pagy'
+gem 'fog-aws'
+gem 'aws-sdk'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

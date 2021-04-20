@@ -1,24 +1,16 @@
 <div class="row">
   <div class="col-9">
+    
+    <%= render 'shared/errors', obj: @message %>
+    
     <%= form_with(model: message) do |form| %>
-      <% if message.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
-    
-          <ul>
-            <% message.errors.each do |error| %>
-              <li><%= error.full_message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-    
+
       <div class="form-group col-md-6">
         <%= form.label :title %>
         <%= form.text_field :title, autofocus: true, autocomplete: 'title', class: 'form-control' %>
       </div>
 
-      <div class="form-group">
+      <div class="form-group col-md-6">
           <%= form.label :body %>
           <%= form.text_area :body, autofocus: true, autocomplete: 'title', class: 'form-control' %>
       </div>
@@ -26,7 +18,11 @@
       <div class="form-group col-md-6">
         <%= form.submit %>
       </div>
+      
+      <div class="col-md-6">
+      <%= link_to t('.back'), :back, class: "btn btn-outline-secondary mt-4 mb-4" %>
+      </div>
     <% end %>
-    
+
   </div>
 </div>
