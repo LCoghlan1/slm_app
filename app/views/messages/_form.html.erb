@@ -1,27 +1,32 @@
-<%= form_with(model: message) do |form| %>
-  <% if message.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+<div class="row">
+  <div class="col-9">
+    <%= form_with(model: message) do |form| %>
+      <% if message.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+    
+          <ul>
+            <% message.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div class="form-group col-md-6">
+        <%= form.label :title %>
+        <%= form.text_field :title, autofocus: true, autocomplete: 'title', class: 'form-control' %>
+      </div>
 
-      <ul>
-        <% message.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+      <div class="form-group">
+          <%= form.label :body %>
+          <%= form.text_area :body, autofocus: true, autocomplete: 'title', class: 'form-control' %>
+      </div>
+  
+      <div class="form-group col-md-6">
+        <%= form.submit %>
+      </div>
+    <% end %>
+    
   </div>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

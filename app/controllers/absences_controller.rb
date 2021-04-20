@@ -10,6 +10,12 @@ class AbsencesController < ApplicationController
         ['Full Pay', @absences.sum(:full_pay)],
         ['Half Pay', @absences.sum(:half_pay)]
       ]
+      
+    respond_to do |format|
+      format.html
+      format.csv { render text: @absences.to_csv }
+    end
+
   end
   
   def image
@@ -72,6 +78,11 @@ class AbsencesController < ApplicationController
       format.html { redirect_to absences_url, notice: "Absence was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+  
+  def import
+    Absence.import(params[:file])
+    redirect_to absences_path, notice: "Absences added successfully"
   end
 
   private

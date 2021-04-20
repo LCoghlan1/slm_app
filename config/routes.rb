@@ -13,9 +13,12 @@ resources :employees do
   resources :absences 
 end
 
+resources :documentation
 resources :messages
 
-resources :absences 
+resources :absences do
+  collection { post :import }
+end
   
 get 'absences/image', to: 'absence#image'
   
