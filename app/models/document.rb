@@ -1,5 +1,5 @@
 class Document < ApplicationRecord
 
-    mount_uploader :key, ImageUploader
+    has_one_attached :file
     
 end
