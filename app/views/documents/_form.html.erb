@@ -1,32 +1,32 @@
-<%= form_with(model: document) do |form| %>
-  <% if document.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
 
-      <ul>
-        <% document.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="row">
+  <div class="col-9">
+    
+    <%= render 'shared/errors', obj: @document %>
+    
+    <%= form_with(model: document) do |form| %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+      <div class="form-group col-md-6">
+        <%= form.label :name, "File Name" %>
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+    
+      <div class="form-group col-md-9">
+        <%= form.label :description %>
+        <%= form.text_area :description, class: 'form-control' %>
+      </div>
+    
+      <div class="form-group col-md-6">
+        <%= form.file_field :file %>
+      </div>
+    
+      <div class="form-group col-md-6">
+        <%= form.submit %>
+      </div>
+      
+      <div class="col-md-6">
+        <%= link_to t('.back'), :back, class: "btn btn-outline-secondary mt-4 mb-4" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :file, value: 'File to upload' %>
-    <%= form.file_field :file %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

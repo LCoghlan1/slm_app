@@ -14,7 +14,8 @@
         <p class="card-text"><strong>SLM ID Number:</strong> <%= @employee.id %></p>
         <p class="card-text"><strong>Location:</strong> <%= @employee.location %></p>
         <p class="card-text"><strong>Hours per Week:</strong> <%= @employee.workHours %></p>
-        <p class="card-text"><strong>Entitlement:</strong> <%= @employee.entitlement %></p>
+        <p class="card-text"><strong>Entitlement:</strong> <%= @employee.entitlement %>
+        </p>
         <%= link_to 'Edit Employee Details', edit_employee_path(@employee), class: "btn btn-outline-primary btn-block" %>
       </div> 
     </div>
@@ -28,7 +29,11 @@
         <p class="card-text"><strong>Instances:</strong> <%= @absence.distinct.count(:instance_no) %></p>
         <p class="card-text"><strong>Days at Full Pay:</strong> <%= @absence.sum(:full_pay) %></p>
         <p class="card-text"><strong>Days at Half Pay:</strong> <%= @absence.sum(:half_pay) %></p>
-        <p class="card-text"><strong>Days:</strong> <%= @absence.sum(:full_pay) + @absence.sum(:half_pay) %></p>
+        <p class="card-text"><strong>Days:</strong> <%= @absence.sum(:full_pay) + @absence.sum(:half_pay) %>
+        <% if @employee.entitlement <= @absence.sum(:full_pay) + @absence.sum(:half_pay) %>
+          Max Entitlement Reached
+        <% end %>
+        </p>
         <%= link_to 'Add Absence', new_employee_absence_path(employee_id: @employee.id), class: "btn btn-primary btn-block" %>
       </div> 
     </div>

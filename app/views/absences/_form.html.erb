@@ -7,26 +7,26 @@
     <%= form_with(model: @absence, url: [@employee, @absence]) do |form| %>
   
       <div class="form-row">
-        <div class="form-group col-md-4">
-          <%= form.label :date, "Start Date" %><br>
+        <div class="form-group col-md-6">
+          <%= form.label :date, "Start date" %><br>
           <%= form.date_field :date, class: 'form-control input-sm', 'datepicker' => true %>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
           <%= form.label :end_date %><br>
           <%= form.date_field :end_date, class: 'form-control input-sm', 'datepicker' => true %>
         </div>
       </div>
       <br>
       <div class="form-row">
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-4">
           <%= form.label "Instance Number" %>
           <%= form.text_field :instance_no, autofocus: true, autocomplete: 'instance number', class: 'form-control' %>
         </div>
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-4">
           <%= form.label :full_pay %>
           <%= form.text_field :full_pay, autofocus: true, autocomplete: 'days at full pay', class: 'form-control' %>
         </div>
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-4">
           <%= form.label :half_pay %>
           <%= form.text_field :half_pay, autofocus: true, autocomplete: 'days at half pay', class: 'form-control' %>
         </div>
@@ -57,7 +57,7 @@
         <%= form.submit %>
       </div>
       
-      <div class="col-md-6">
+      <div class="form-group">
         <%= link_to t('.back'), :back, class: "btn btn-outline-secondary mt-4 mb-4" %>
       </div>
       

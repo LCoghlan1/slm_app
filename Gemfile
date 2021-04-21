@@ -30,6 +30,7 @@ gem 'groupdate'
 gem 'pagy'
 gem 'fog-aws'
 gem 'aws-sdk'
+gem 'prawn'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

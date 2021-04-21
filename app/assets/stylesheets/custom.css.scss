@@ -1,7 +1,7 @@
 @import 'bootstrap/dist/css/bootstrap';
 
 #app-container{
-  min-height: 500px;
+  min-height: 600px;
 }
 th, td{
   font-weight: normal;
@@ -9,6 +9,9 @@ th, td{
 
 #home-card{
   min-height: 450px;
+}
+#employee-card{
+  min-height: 270px;
 }
 
 #report-card{

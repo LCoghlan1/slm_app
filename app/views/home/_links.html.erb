@@ -2,12 +2,12 @@
   <div class="col-4">
     <div class="card mb-3 box-shadow" id="home-card">
       <div class="card-header">
-        <h5 class="card-title"><center>Employees</center></h5>
+        <h4 class="card-title"><center>Employees</center></h4>
       </div>
       <div class="card-body d-flex flex-column">
+        <h5>Overview of employees</h5>
         <p>Number of Employees: <%= @employees.count %></p>
         <p>Number of Locations: <%= @employees.distinct.count(:location) %></p>
-        <p>List of Locations:</p>
         <ul>
           <% @employees.distinct(:location).pluck(:location).each do |emp| %>
           <li><%= emp %></li>
@@ -22,15 +22,15 @@
   <div class="col-4">
     <div class="card mb-3 box-shadow" id="home-card">
       <div class="card-header">
-        <h5 class="card-title"><center>Absence Reports</center></h5>
+        <h4 class="card-title"><center>Absence Reports</center></h4>
       </div>
       <div class="card-body d-flex flex-column">
-        <p>Overview of all absences recorded:</p>
+        <h5>Overview of absences</h5>
         <p>Total Absences: <%= @absences.count %></p>
         <p>Total Days Absent: <%= @absences.sum(:full_pay) + @absences.sum(:half_pay) %></p>
         <p>Click below to display reports for a defined period</p>
         <div class="mt-auto">
-          <%= link_to 'Go to Absence Report', absences_path, class: "btn btn-lg btn-block btn-outline-primary" %>
+          <%= link_to 'Go to Absence Report', absences_path, class: "btn btn-lg btn-block btn-outline-secondary" %>
         </div>
       </div>
     </div>
@@ -38,15 +38,17 @@
   <div class="col-4">
     <div class="card mb-3" id="home-card">
       <div class="card-header">
-        <h5 class="card-title"><center>Documentation</center></h5>
+        <h4 class="card-title"><center>Documentation</center></h4>
       </div>
       <div class="card-body card-body d-flex flex-column">
-        <p>List of documentation</p>
+        <h5>List of documentation</h5>
         <ul>
-          <li>Sick Leave Policy</li>
+          <% @documents.each do |doc| %>
+          <li><%= doc.name %></li>
+          <% end %>
         </ul>
         <div class="mt-auto">
-          <%= link_to 'Go to Documentation', documents_path, class: "btn btn-lg btn-block btn-outline-primary" %>
+          <%= link_to 'Go to Documentation', documents_path, class: "btn btn-lg btn-block btn-outline-success" %>
         </div>
       </div>
     </div>

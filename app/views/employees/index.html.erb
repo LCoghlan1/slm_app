@@ -1,76 +1,83 @@
-<div class="card">
-  <div class="card-body">
-    <h3 class="card-title">Employee Records</h3>
-    <hr>
-    <div class="row">
-    <div class="col">
-      
-    <p class="card-text">
-    
-      <%= search_form_for @q do |f| %>
-  
-      <%= f.search_field :firstName_or_lastName_or_location_cont, class: "form-control col-6", placeholder: "Search Records" %>
-    
-      <br>
-    
-      <%= f.submit "Search", class: "btn btn-primary mr-4" %>
-      
-      <% end %>
-      </p>
-      
+<h1>Employee List</h1>
+
+<br>
+<div class="row">
+  <div class="col-6">
+    <div class="card" id="employee-card">
+      <div class="card-header">
+        <h5 class="card-title">Search Records</h5>
       </div>
-    <div class="col">
- 
-      <p class="card-text">
+      <div class="card-body">
+        <p><%= search_form_for @q do |f| %></p>
+        <p><%= f.search_field :firstName_or_lastName_or_location_cont, class: "form-control col-9", placeholder: "Search Records by Name or Location" %><p>
+          
+        <%= f.submit "Search", class: "btn btn-primary" %>
         
-        <p><strong>Number of Employees:</strong> <%= @employees.count %></p>
-        <br>
-        <%= link_to 'Add Employee', new_employee_path, class: "btn btn-outline-primary" %>
-      
-      </p>
-      
- 
+        <% end %>
+      </div>
     </div>
+  </div>
+  <div class="col-6">
+    <div class="card" id="employee-card">
+      <div class="card-header">
+        <h5 class="card-title">Shown Records</h5>
+      </div>
+      <div class="card-body">
+          <p><strong>Number of Employees:</strong> <%= @employees.count %></p>
+          <p><strong>Number of Locations:</strong> <%= @employees.distinct.count(:location) %></p>
+          <br>
+          <%= link_to 'Add Employee', new_employee_path, class: "btn btn-outline-primary mt-4" %>
+      </div>
     </div>
-    
   </div>
 </div>
 
 <br>
 
+<% if @employees.any? %>
 
-<div class="card">
-  <table class="table table-striped mt-4">
-    <thead>
-
-      <tr>
-        <th scope="col"><%= sort_link(@q, :id, 'SLM ID') %></th>
-        <th scope="col"><%= sort_link(@q, :firstName, 'First Name') %></th>
-        <th scope="col"><%= sort_link(@q, :lastName, 'Last Name') %></th>
-        <th scope="col"><%= sort_link(@q, :location, 'Location') %></th>
-        <th scope="col"><%= sort_link(@q, :workHours, 'Working Hours') %></th>
-        <th scope="col"><%= sort_link(@q, :entitlement, 'Entitlement') %></th>
-        <th colspan="3"><strong>Actions</strong></th>
-      </tr>
-    </thead>
+  <div class="card">
+    <table class="table table-striped mt-4">
+      <thead>
   
-    <tbody>
-      <% @employees.each do |employee| %>
         <tr>
-          <td><%= employee.id %></td>
-          <td><%= employee.firstName %></td>
-          <td><%= employee.lastName %></td>
-          <td><%= employee.location %></td>
-          <td><%= employee.workHours %></td>
-          <td><%= employee.entitlement %></td>
-          <td><%= link_to 'Show', employee, class: "btn btn-primary btn-sm" %></td>
-          <td><%= link_to 'Delete', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
+          <th scope="col"><%= sort_link(@q, :id, 'SLM ID') %></th>
+          <th scope="col"><%= sort_link(@q, :firstName, 'First Name') %></th>
+          <th scope="col"><%= sort_link(@q, :lastName, 'Last Name') %></th>
+          <th scope="col"><%= sort_link(@q, :location, 'Location') %></th>
+          <th scope="col"><%= sort_link(@q, :workHours, 'Working Hours') %></th>
+          <th scope="col"><%= sort_link(@q, :entitlement, 'Entitlement') %></th>
+          <th colspan="3"><strong>Actions</strong></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+    
+      <tbody>
+        <% @employees.each do |employee| %>
+          <tr>
+            <td><%= employee.id %></td>
+            <td><%= employee.firstName %></td>
+            <td><%= employee.lastName %></td>
+            <td><%= employee.location %></td>
+            <td><%= employee.workHours %></td>
+            <td><%= employee.entitlement %></td>
+            <td><%= link_to 'Show', employee, class: "btn btn-primary btn-sm" %></td>
+            <td><%= link_to 'Delete', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  
+  </div>
 
-</div>
+<% else %>
+    
+    <div class="card">
+      <table class="table table-striped mt-4">
+        <th scope="col"> No Results Found</th>
+      </table>
+    </div>
+    
+<% end %>
 
 <br>
 

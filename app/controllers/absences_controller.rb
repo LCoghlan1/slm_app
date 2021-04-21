@@ -75,7 +75,7 @@ class AbsencesController < ApplicationController
   def destroy
     @absence.destroy
     respond_to do |format|
-      format.html { redirect_to absences_url, notice: "Absence was successfully destroyed." }
+      format.html { redirect_to employee_url(@absence.employee_id), notice: "Absence was successfully destroyed." }
       format.json { head :no_content }
     end
   end

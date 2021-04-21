@@ -4,6 +4,7 @@ class DocumentsController < ApplicationController
   # GET /documents or /documents.json
   def index
     @documents = Document.all
+
   end
 
   # GET /documents/1 or /documents/1.json
@@ -25,7 +26,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: "Document was successfully created." }
+        format.html { redirect_to documents_url, notice: "Document was successfully created." }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new, status: :unprocessable_entity }
