@@ -4,8 +4,10 @@
     
     <%= render 'shared/errors', obj: @absence %>
     
+     <!-- Include both employee and absence objects -->
     <%= form_with(model: @absence, url: [@employee, @absence]) do |form| %>
-  
+      
+       <!-- datepicker to allow user select date -->
       <div class="form-row">
         <div class="form-group col-md-6">
           <%= form.label :date, "Start date" %><br>
@@ -39,6 +41,7 @@
         </div>
       </div>
       <br>
+       <!-- upload and remove images -->
       <div class="form-group">
         <%= form.file_field :image %>
       </div>
@@ -49,6 +52,7 @@
         </div>
       <% end %>
       
+       <!-- hidden field to pass employee_id as a param -->
       <div class="field">
         <%= form.hidden_field :employee_id %>
       </div>

@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+    
+    
     include Pagy::Backend
     before_action :authenticate_user!
     before_action :configure_permitted_parameters, if: :devise_controller?
@@ -12,6 +14,7 @@ class ApplicationController < ActionController::Base
        devise_parameter_sanitizer.permit(:account_update, keys: [:firstName, :lastName])
     end
     
+    #method to only allow admin access
     def require_admin
       if !current_user.admin?
          flash[:alert] = "Not authorised"

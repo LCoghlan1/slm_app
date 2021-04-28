@@ -3,14 +3,16 @@ class AbsencesController < ApplicationController
 
   # GET /absences or /absences.json
   def index
-
+    #ransack search
     @q = Absence.ransack(params[:q])
+    #paginate
     @pagy, @absences = pagy(@q.result)
+    #define for charkick
     @absence_type = [
         ['Full Pay', @absences.sum(:full_pay)],
         ['Half Pay', @absences.sum(:half_pay)]
       ]
-      
+    #attempt to upload/download cvs format - in development
     respond_to do |format|
       format.html
       format.csv { render text: @absences.to_csv }
@@ -18,6 +20,7 @@ class AbsencesController < ApplicationController
 
   end
   
+  #for carrierwave image view
   def image
 
   end
@@ -44,7 +47,6 @@ class AbsencesController < ApplicationController
   # POST /absences or /absences.json
 # Controller
   def create
-    # just to make sure if the employee exists
     @absence = Absence.new(absence_params)
   
     respond_to do |format|
@@ -82,7 +84,7 @@ class AbsencesController < ApplicationController
   
   def import
     Absence.import(params[:file])
-    redirect_to absences_path, notice: "Absences added successfully"
+    redirect_to absences_path, notice: "Absence(s) added successfully"
   end
 
   private

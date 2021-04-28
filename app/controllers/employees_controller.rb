@@ -3,6 +3,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees or /employees.json
   def index
+    #ransack search
     @q = Employee.ransack(params[:q])
     @employees = @q.result
   end

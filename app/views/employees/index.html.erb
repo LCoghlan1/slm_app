@@ -7,6 +7,7 @@
       <div class="card-header">
         <h5 class="card-title">Search Records</h5>
       </div>
+       <!-- ransack search -->
       <div class="card-body">
         <p><%= search_form_for @q do |f| %></p>
         <p><%= f.search_field :firstName_or_lastName_or_location_cont, class: "form-control col-9", placeholder: "Search Records by Name or Location" %><p>
@@ -39,7 +40,7 @@
   <div class="card">
     <table class="table table-striped mt-4">
       <thead>
-  
+         <!-- ransack sork link feature -->
         <tr>
           <th scope="col"><%= sort_link(@q, :id, 'SLM ID') %></th>
           <th scope="col"><%= sort_link(@q, :firstName, 'First Name') %></th>

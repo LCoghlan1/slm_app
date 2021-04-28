@@ -1,5 +1,6 @@
 class Employee < ApplicationRecord
 
+    #establish relationship
     has_many :absences, dependent: :destroy
     
     validates :firstName, presence: true

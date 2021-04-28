@@ -4,7 +4,7 @@
       <div class="card-body">
         <h4 class="card-title">Notice Board           
           <% if current_user.admin %>
-            <%= link_to 'New Message', new_message_path, class: "btn btn-secondary" %>
+            <%= link_to 'New Message', new_message_path, class: "btn btn-primary" %>
           <% end %>
         </h4>
         <table class="table table-striped mt-4">
@@ -28,7 +28,7 @@
               <td><%= message.user.firstName %> <%= message.user.lastName %></td>
               <td><%= message.created_at.strftime("%T - %d/%m/%Y") %></td>
               <% if current_user.admin %>
-                <td><%= link_to 'Edit', edit_message_path(message), class: "btn btn-secondary btn-sm" %></td>
+                <td><%= link_to 'Edit', edit_message_path(message), class: "btn btn-outline-secondary btn-sm" %></td>
                 <td><%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
               <% end %>
             </tr>
