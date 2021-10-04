@@ -1,24 +1,8 @@
-# README
+# Information
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The link to the test website is https://cib-slm-app.herokuapp.com/
 
-Things you may want to cover:
+Username: admin@slmapp.ie
+Password: password
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+For information on the project please see the
